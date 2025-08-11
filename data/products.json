@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "title": "Waffle with Berries",
+    "price": 6.5,
+    "image": "https://images.unsplash.com/photo-1639107981824-4904e9aa6e7e?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "category": "Waffle",
+    "description": "Crisp waffle topped with fresh strawberries and cream."
+  },
+  {
+    "id": 2,
+    "title": "Vanilla Bean Cr\u00e8me Br\u00fbl\u00e9e",
+    "price": 7.0,
+    "image": "https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?q=80&w=800&auto=format&fit=crop",
+    "category": "Cr\u00e8me Br\u00fbl\u00e9e",
+    "description": "Silky custard with a caramelized sugar crust."
+  },
+  {
+    "id": 3,
+    "title": "Macaron Mix of Five",
+    "price": 8.0,
+    "image": "https://images.unsplash.com/photo-1478145046317-39f10e56b5e9?q=80&w=800&auto=format&fit=crop",
+    "category": "Macaron",
+    "description": "Assorted delicate macarons in five flavors."
+  },
+  {
+    "id": 4,
+    "title": "Classic Tiramisu",
+    "price": 5.5,
+    "image": "https://images.unsplash.com/photo-1592910148629-315b14d93da8?q=80&w=800&auto=format&fit=crop",
+    "category": "Tiramisu",
+    "description": "Espresso-soaked ladyfingers with mascarpone."
+  },
+  {
+    "id": 5,
+    "title": "Pistachio Baklava",
+    "price": 4.0,
+    "image": "https://images.unsplash.com/photo-1586634492321-0f0b1450f03e?q=80&w=800&auto=format&fit=crop",
+    "category": "Baklava",
+    "description": "Flaky layers with pistachios and honey syrup."
+  },
+  {
+    "id": 6,
+    "title": "Lemon Meringue Pie",
+    "price": 5.0,
+    "image": "https://images.unsplash.com/photo-1604908554049-0b4b0a0bef98?q=80&w=800&auto=format&fit=crop",
+    "category": "Pie",
+    "description": "Tangy lemon curd with toasted meringue."
+  },
+  {
+    "id": 7,
+    "title": "Red Velvet Cake",
+    "price": 4.5,
+    "image": "https://images.unsplash.com/photo-1614707267537-7e9f5bff1fcd?q=80&w=800&auto=format&fit=crop",
+    "category": "Cake",
+    "description": "Moist red velvet with cream cheese frosting."
+  },
+  {
+    "id": 8,
+    "title": "Salted Caramel Brownie",
+    "price": 5.5,
+    "image": "https://images.unsplash.com/photo-1606313564200-e75d5e30476a?q=80&w=800&auto=format&fit=crop",
+    "category": "Brownie",
+    "description": "Fudgy brownie swirled with salted caramel."
+  },
+  {
+    "id": 9,
+    "title": "Vanilla Panna Cotta",
+    "price": 6.5,
+    "image": "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?q=80&w=800&auto=format&fit=crop",
+    "category": "Panna Cotta",
+    "description": "Silky vanilla panna cotta with berries."
+  }
+]
