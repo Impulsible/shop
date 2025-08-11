@@ -19,15 +19,11 @@ const sortSelect = document.getElementById("sortSelect");
 const categoryChips = document.getElementById("categoryChips");
 const toast = document.getElementById("toast");
 
-// Mobile filters toggle
-const mobileFilterToggle = document.getElementById('mobileFilterToggle');
-const filterControls = document.getElementById('filterControls');
-
-mobileFilterToggle?.addEventListener('click', () => {
-  const hiddenNow = filterControls.classList.contains('hidden');
-  filterControls.classList.toggle('hidden', !hiddenNow);
-  categoryChips.classList.toggle('hidden', !hiddenNow);
-});
+/* Off-canvas drawer toggle (HTML has #filterToggle) */
+const filterToggle = document.getElementById("filterToggle");
+const closeDrawerIfMobile = () => {
+  if (filterToggle && window.innerWidth < 640) filterToggle.checked = false; // sm breakpoint
+};
 
 /* =========================
    DATA
@@ -59,7 +55,6 @@ const debounce = (fn, ms=150) => { let t; return (...a)=>{ clearTimeout(t); t=se
 
 function showToast(message='Done') {
   if (!toast) return;
-  // build simple bubble so it also works with your empty #toast container
   toast.innerHTML = `<div class="max-w-md w-full rounded-xl bg-rose900 text-white px-4 py-3 shadow-soft"><p class="text-sm">${message}</p></div>`;
   toast.classList.remove('hidden', 'opacity-0');
   toast.classList.add('flex');
@@ -116,18 +111,15 @@ function applyList(list) {
   else if (sortVal === "priceDesc") out.sort((a,b)=>b.price-a.price);
   else if (sortVal === "nameAsc") out.sort((a,b)=>a.title.localeCompare(b.title));
   else if (sortVal === "nameDesc") out.sort((a,b)=>b.title.localeCompare(a.title));
-  // 'popular' keeps original order
-
-  return out;
+  return out; // 'popular' keeps original order
 }
 
 /* =========================
    RENDER PRODUCTS (via template)
 ========================= */
 function renderProducts(list) {
-  grid.innerHTML = ""; // clear
+  grid.innerHTML = "";
   const tpl = document.getElementById("cardTpl");
-
   const data = applyList(list);
 
   if (data.length === 0) {
@@ -136,6 +128,7 @@ function renderProducts(list) {
     d.innerHTML = `<p class="font-semibold text-rose900 mb-1">No matches found</p>
                    <p>Try a different search or clear filters.</p>`;
     grid.appendChild(d);
+    rebuildIndex();
     return;
   }
 
@@ -171,28 +164,27 @@ function renderProducts(list) {
 
     function syncCard() {
       const q = getQty(prod.id);
-      qtyText.textContent = q;
+      if (qtyText) qtyText.textContent = q;
       if (q > 0) {
-        addBtn.classList.add("hidden");
-        qtyBar.classList.remove("hidden");
+        addBtn?.classList.add("hidden");
+        qtyBar?.classList.remove("hidden");
         card.classList.add("ring-2", "ring-rust");
       } else {
-        qtyBar.classList.add("hidden");
-        addBtn.classList.remove("hidden");
+        qtyBar?.classList.add("hidden");
+        addBtn?.classList.remove("hidden");
         card.classList.remove("ring-2", "ring-rust");
       }
     }
 
-    addBtn.addEventListener("click", () => { addToCart(prod); syncCard(); showToast("Added to cart"); });
-    incBtn.addEventListener("click", () => { addToCart(prod); syncCard(); });
-    decBtn.addEventListener("click", () => { decreaseQty(prod.id); syncCard(); });
+    addBtn?.addEventListener("click", () => { addToCart(prod); syncCard(); showToast("Added to cart"); });
+    incBtn?.addEventListener("click", () => { addToCart(prod); syncCard(); });
+    decBtn?.addEventListener("click", () => { decreaseQty(prod.id); syncCard(); });
 
     syncCard();
     grid.appendChild(frag);
   });
 
-  // after (re)render, rebuild index for search filter
-  rebuildIndex();
+  rebuildIndex(); // update search index for show/hide
 }
 
 /* =========================
@@ -294,7 +286,7 @@ function rebuildIndex() {
   });
   populateCategories();
   renderChips();
-  applyFilters(); // show/hide after each render
+  applyFilters();
 }
 
 function populateCategories() {
@@ -348,7 +340,12 @@ function renderChips(){
     b.type = 'button';
     b.className = `px-3 py-1 rounded-full border text-sm shadow-soft ${isActive? 'bg-rust text-white border-rust' : 'bg-white text-rose900 hover:bg-rose50'}`;
     b.textContent = label;
-    b.addEventListener('click', ()=> { categoryFilter.value = value || ''; applyFilters(); renderChips(); });
+    b.addEventListener('click', ()=> {
+      categoryFilter.value = value || '';
+      applyFilters();
+      renderChips();
+      closeDrawerIfMobile(); // auto-close drawer after choosing a chip on mobile
+    });
     return b;
   };
   categoryChips.appendChild(mk('All',''));
@@ -358,13 +355,49 @@ function renderChips(){
 /* =========================
    EVENTS
 ========================= */
-if (searchInput) searchInput.addEventListener("input", debounce(()=> { renderProducts(products); /* re-renders & filters */ }, 120));
-if (clearBtn) clearBtn.addEventListener("click", () => { searchInput.value = ""; renderProducts(products); searchInput.focus(); });
-if (categoryFilter) categoryFilter.addEventListener("change", () => { renderProducts(products); });
-if (sortSelect) sortSelect.addEventListener("change", () => { renderProducts(products); });
+if (searchInput) {
+  searchInput.addEventListener("input", debounce(()=> { renderProducts(products); }, 120));
+}
+if (clearBtn) {
+  clearBtn.addEventListener("click", () => {
+    searchInput.value = "";
+    renderProducts(products);
+    searchInput.focus();
+    closeDrawerIfMobile(); // close drawer when clearing on mobile
+  });
+}
+if (categoryFilter) {
+  categoryFilter.addEventListener("change", () => {
+    renderProducts(products);
+    closeDrawerIfMobile();
+  });
+}
+if (sortSelect) {
+  sortSelect.addEventListener("change", () => {
+    renderProducts(products);
+    closeDrawerIfMobile();
+  });
+}
 
 /* =========================
    INIT
 ========================= */
 renderProducts(products);
 updateCart();
+
+
+function syncCard() {
+  const q = getQty(prod.id);
+  if (qtyText) qtyText.textContent = q;
+  if (q > 0) {
+    addBtn?.classList.add("hidden");
+    qtyBar?.classList.remove("hidden");
+    // highlight selected
+    card.classList.add("ring-2","ring-rust","border-2","border-rust");
+  } else {
+    qtyBar?.classList.add("hidden");
+    addBtn?.classList.remove("hidden");
+    // remove highlight
+    card.classList.remove("ring-2","ring-rust","border-2","border-rust");
+  }
+}
