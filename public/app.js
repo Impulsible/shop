@@ -19,6 +19,16 @@ const sortSelect = document.getElementById("sortSelect");
 const categoryChips = document.getElementById("categoryChips");
 const toast = document.getElementById("toast");
 
+// Mobile filters toggle
+const mobileFilterToggle = document.getElementById('mobileFilterToggle');
+const filterControls = document.getElementById('filterControls');
+
+mobileFilterToggle?.addEventListener('click', () => {
+  const hiddenNow = filterControls.classList.contains('hidden');
+  filterControls.classList.toggle('hidden', !hiddenNow);
+  categoryChips.classList.toggle('hidden', !hiddenNow);
+});
+
 /* =========================
    DATA
 ========================= */
