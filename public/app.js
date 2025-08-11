@@ -19,7 +19,7 @@ const sortSelect = document.getElementById("sortSelect");
 const categoryChips = document.getElementById("categoryChips");
 const toast = document.getElementById("toast");
 
-/* Off-canvas drawer toggle (HTML has #filterToggle) */
+/* Optional: off-canvas drawer support (not included in HTML) */
 const filterToggle = document.getElementById("filterToggle");
 const closeDrawerIfMobile = () => {
   if (filterToggle && window.innerWidth < 640) filterToggle.checked = false; // sm breakpoint
@@ -74,11 +74,9 @@ function showToast(message='Done') {
 ========================= */
 function addToCart(product) {
   const item = findInCart(product.id);
-  if (item) item.qty += 1;
-  else cart.push({ ...product, qty: 1 });
+  if (item) item.qty += 1; else cart.push({ ...product, qty: 1 });
   updateCart();
 }
-
 function decreaseQty(id) {
   const item = findInCart(id);
   if (!item) return;
@@ -86,7 +84,6 @@ function decreaseQty(id) {
   if (item.qty <= 0) cart = cart.filter(i => i.id !== id);
   updateCart();
 }
-
 function getQty(id) {
   const item = findInCart(id);
   return item ? item.qty : 0;
@@ -344,7 +341,7 @@ function renderChips(){
       categoryFilter.value = value || '';
       applyFilters();
       renderChips();
-      closeDrawerIfMobile(); // auto-close drawer after choosing a chip on mobile
+      closeDrawerIfMobile();
     });
     return b;
   };
@@ -363,7 +360,7 @@ if (clearBtn) {
     searchInput.value = "";
     renderProducts(products);
     searchInput.focus();
-    closeDrawerIfMobile(); // close drawer when clearing on mobile
+    closeDrawerIfMobile();
   });
 }
 if (categoryFilter) {
@@ -384,20 +381,3 @@ if (sortSelect) {
 ========================= */
 renderProducts(products);
 updateCart();
-
-
-function syncCard() {
-  const q = getQty(prod.id);
-  if (qtyText) qtyText.textContent = q;
-  if (q > 0) {
-    addBtn?.classList.add("hidden");
-    qtyBar?.classList.remove("hidden");
-    // highlight selected
-    card.classList.add("ring-2","ring-rust","border-2","border-rust");
-  } else {
-    qtyBar?.classList.add("hidden");
-    addBtn?.classList.remove("hidden");
-    // remove highlight
-    card.classList.remove("ring-2","ring-rust","border-2","border-rust");
-  }
-}

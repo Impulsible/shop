@@ -1,45 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- SEO Meta Tags -->
   <title>Product List with Cart | Delicious Desserts Online</title>
-  <meta name="description"
-    content="Browse and order from our selection of delicious desserts including waffles, tiramisu, panna cotta, and more. Add items to your cart, adjust quantities, and confirm your order easily.">
-  <meta name="keywords"
-    content="desserts, waffles, tiramisu, panna cotta, cake, pastry, online ordering, sweet treats, bakery, product list, cart">
-  <meta name="author" content="Your Name or Brand">
-
-  <!-- Browser Theme Color -->
-  <meta name="theme-color" content="#C3512F">
+  <meta name="description" content="Browse and order from our selection of delicious desserts including waffles, tiramisu, panna cotta, and more. Add items to your cart, adjust quantities, and confirm your order easily." />
+  <meta name="keywords" content="desserts, waffles, tiramisu, panna cotta, cake, pastry, online ordering, sweet treats, bakery, product list, cart" />
+  <meta name="author" content="Delicious Desserts" />
+  <meta name="theme-color" content="#C3512F" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Product List with Cart - Delicious Desserts">
-  <meta property="og:description"
-    content="Order fresh and tasty desserts online. Add to cart, adjust quantities, and checkout in a few clicks.">
-  <meta property="og:image" content="/assets/preview.jpg">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://yourwebsite.com">
+  <meta property="og:title" content="Product List with Cart - Delicious Desserts" />
+  <meta property="og:description" content="Order fresh and tasty desserts online. Add to cart, adjust quantities, and checkout in a few clicks." />
+  <meta property="og:image" content="/assets/preview.jpg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yourwebsite.com" />
 
   <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Product List with Cart - Delicious Desserts">
-  <meta name="twitter:description"
-    content="Order fresh and tasty desserts online. Add to cart, adjust quantities, and checkout in a few clicks.">
-  <meta name="twitter:image" content="/assets/preview.jpg">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Product List with Cart - Delicious Desserts" />
+  <meta name="twitter:description" content="Order fresh and tasty desserts online. Add to cart, adjust quantities, and checkout in a few clicks." />
+  <meta name="twitter:image" content="/assets/preview.jpg" />
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
-  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <!-- Favicons (adjust paths as needed) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
 
   <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Tailwind Config -->
+  <!-- Tailwind (CDN) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -47,25 +40,24 @@
         extend: {
           fontFamily: { redhat: ['"Red Hat Text"', 'sans-serif'] },
           colors: {
-            red: "hsl(14, 86%, 42%)",
-            green: "hsl(159, 69%, 38%)",
-            rose50: "hsl(20, 50%, 98%)",
-            rose100: "hsl(13, 31%, 94%)",
-            rose300: "hsl(14, 25%, 72%)",
-            rose400: "hsl(7, 20%, 60%)",
-            rose500: "hsl(12, 20%, 44%)",
-            rose900: "hsl(14, 65%, 9%)",
-            rust: "#C3512F",
-            rustdark: "#A13F22",
-            cream: "#fff7f2"
+            red: 'hsl(14, 86%, 42%)',
+            green: 'hsl(159, 69%, 38%)',
+            rose50: 'hsl(20, 50%, 98%)',
+            rose100: 'hsl(13, 31%, 94%)',
+            rose300: 'hsl(14, 25%, 72%)',
+            rose400: 'hsl(7, 20%, 60%)',
+            rose500: 'hsl(12, 20%, 44%)',
+            rose900: 'hsl(14, 65%, 9%)',
+            rust: '#C3512F',
+            rustdark: '#A13F22',
+            cream: '#fff7f2'
           },
-          boxShadow: { soft: "0 8px 24px rgba(0,0,0,.08)" }
+          boxShadow: { soft: '0 8px 24px rgba(0,0,0,.08)' }
         }
       }
-    }
+    };
   </script>
 </head>
-
 <body class="min-h-screen bg-cream text-rose900 font-redhat antialiased flex flex-col">
   <!-- PAGE CONTENT -->
   <main class="flex-1">
@@ -79,58 +71,59 @@
           <label for="searchInput" class="sr-only">Search desserts</label>
           <div class="relative flex-1">
             <input id="searchInput" type="search" inputmode="search" autocomplete="off" placeholder="Search desserts…"
-              class="w-full rounded-full border bg-white px-4 py-2 pr-10 shadow-soft focus:outline-none focus:ring-2 focus:ring-rust" >
-            <button id="clearSearch" type="button"
-              class="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-rose100"
-              aria-label="Clear search">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-70" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor">
+              class="w-full rounded-full border bg-white px-4 py-2 pr-10 shadow-soft focus:outline-none focus:ring-2 focus:ring-rust" />
+            <button id="clearSearch" type="button" class="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-rose100" aria-label="Clear search">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-70" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </div>
 
           <!-- Category -->
-          <div class="sm:w-64">
+          <div class="sm:w-56">
             <label for="categoryFilter" class="sr-only">Filter by category</label>
-            <select id="categoryFilter"
-              class="w-full rounded-full border bg-white px-4 py-2 shadow-soft focus:outline-none focus:ring-2 focus:ring-rust">
+            <select id="categoryFilter" class="w-full rounded-full border bg-white px-4 py-2 shadow-soft focus:outline-none focus:ring-2 focus:ring-rust">
               <option value="">All categories</option>
             </select>
           </div>
+
+          <!-- Sort -->
+          <div class="sm:w-56">
+            <label for="sortSelect" class="sr-only">Sort</label>
+            <select id="sortSelect" class="w-full rounded-full border bg-white px-4 py-2 shadow-soft focus:outline-none focus:ring-2 focus:ring-rust">
+              <option value="popular">Most popular</option>
+              <option value="priceAsc">Price: Low → High</option>
+              <option value="priceDesc">Price: High → Low</option>
+              <option value="nameAsc">Name: A → Z</option>
+              <option value="nameDesc">Name: Z → A</option>
+            </select>
+          </div>
         </div>
+
+        <!-- Quick chips (auto-filled) -->
+        <div id="categoryChips" class="mt-3 flex flex-wrap gap-2"></div>
       </section>
 
       <div class="grid lg:grid-cols-[1fr,26rem] gap-6 items-start">
         <!-- PRODUCTS -->
-        <main id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-2 sm:px-4"></main>
+        <section id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-2 sm:px-4"></section>
 
         <!-- CART -->
         <aside class="lg:sticky lg:top-6">
           <div class="bg-white rounded-2xl p-6 shadow-soft border">
-            <h2 class="text-xl font-bold">Your Cart <span id="cartCountHdr" class="text-rose500 text-base">(0)</span>
-            </h2>
-
+            <h2 class="text-xl font-bold">Your Cart <span id="cartCountHdr" class="text-rose500 text-base">(0)</span></h2>
             <div id="cartList" class="divide-y mt-3"></div>
-
             <div class="mt-4 flex items-center justify-between">
               <span class="text-rose500">Order Total</span>
               <span id="orderTotal" class="text-2xl font-extrabold">$0.00</span>
             </div>
-
             <div class="mt-4 rounded-xl bg-rose100 px-3 py-2 text-sm text-rose500 flex items-center gap-2">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                  d="M12 2v4m0 12v4m-7-7H1m22 0h-4M5.64 5.64l-2.83-2.83M21.19 21.19l-2.83-2.83M18.36 5.64l2.83-2.83M2.81 21.19l2.83-2.83" />
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 2v4m0 12v4m-7-7H1m22 0h-4M5.64 5.64l-2.83-2.83M21.19 21.19l-2.83-2.83M18.36 5.64l2.83-2.83M2.81 21.19l2.83-2.83" />
               </svg>
               <span>This is a <strong class="font-semibold">carbon-neutral</strong> delivery</span>
             </div>
-
-            <button id="confirmBtn"
-              class="mt-4 w-full py-3 rounded-full bg-rust text-white font-semibold hover:bg-rustdark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rust">
-              Confirm Order
-            </button>
+            <button id="confirmBtn" class="mt-4 w-full py-3 rounded-full bg-rust text-white font-semibold hover:bg-rustdark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rust">Confirm Order</button>
           </div>
         </aside>
       </div>
@@ -139,8 +132,7 @@
 
   <!-- FOOTER -->
   <footer class="mt-auto bg-rose100">
-    <div
-      class="max-w-6xl mx-auto px-4 md:px-6 py-6 text-sm text-rose500 flex flex-col sm:flex-row items-center justify-between gap-3">
+    <div class="max-w-6xl mx-auto px-4 md:px-6 py-6 text-sm text-rose500 flex flex-col sm:flex-row items-center justify-between gap-3">
       <p>&copy; 2025 Delicious Desserts. All rights reserved.</p>
       <nav class="flex items-center gap-4">
         <a href="#" class="hover:underline">Privacy</a>
@@ -152,33 +144,25 @@
 
   <!-- CARD TEMPLATE -->
   <template id="cardTpl">
-    <article
-      class="relative bg-white rounded-2xl border overflow-hidden shadow-soft focus-within:ring-2 focus-within:ring-rust transition">
-      <!-- Image + floating controls -->
+    <article class="relative bg-white rounded-2xl border overflow-hidden shadow-soft focus-within:ring-2 focus-within:ring-rust transition">
       <div class="relative">
-        <img class="w-full aspect-[4/3] object-cover rounded-xl" alt="">
+        <img class="w-full aspect-[4/3] object-cover rounded-xl" alt="" />
         <div class="absolute left-1/2 -translate-x-1/2 -bottom-5 w-[calc(100%-2rem)] sm:w-[calc(100%-2.5rem)]">
           <!-- Add to Cart (default) -->
-          <button
-            class="addBtn w-full flex items-center justify-center gap-2 py-2 rounded-full bg-white border shadow-sm hover:bg-rose50 focus:outline-none focus:ring-2 focus:ring-rust">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 9m12-9l-1 9m-6 0h6" />
+          <button class="addBtn w-full flex items-center justify-center gap-2 py-2 rounded-full bg-white border shadow-sm hover:bg-rose50 focus:outline-none focus:ring-2 focus:ring-rust">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 9m12-9l-1 9m-6 0h6" />
             </svg>
             <span>Add to Cart</span>
           </button>
           <!-- Quantity bar -->
           <div class="qtyBar hidden bg-rust text-white rounded-full px-2 py-2 grid grid-cols-3 items-center">
-            <button
-              class="dec justify-self-start w-8 h-8 grid place-content-center rounded-full bg-white/20 hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white">–</button>
+            <button class="dec justify-self-start w-8 h-8 grid place-content-center rounded-full bg-white/20 hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white">–</button>
             <span class="qty text-center font-semibold">0</span>
-            <button
-              class="inc justify-self-end w-8 h-8 grid place-content-center rounded-full bg-white/20 hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white">+</button>
+            <button class="inc justify-self-end w-8 h-8 grid place-content-center rounded-full bg-white/20 hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white">+</button>
           </div>
         </div>
       </div>
-      <!-- Content -->
       <div class="p-5 pt-10">
         <p class="text-xs uppercase tracking-wide text-rose500"></p>
         <h3 class="mt-1 font-semibold"></h3>
@@ -198,10 +182,7 @@
         <span class="text-rose500">Order Total</span>
         <span id="modalTotal" class="text-xl font-extrabold">$0.00</span>
       </div>
-      <button id="newOrderBtn"
-        class="mt-5 w-full py-3 rounded-full bg-rose900 text-white font-semibold hover:bg-rose500 focus:outline-none focus:ring-2 focus:ring-offset-2">
-        Start New Order
-      </button>
+      <button id="newOrderBtn" class="mt-5 w-full py-3 rounded-full bg-rose900 text-white font-semibold hover:bg-rose500 focus:outline-none focus:ring-2 focus:ring-offset-2">Start New Order</button>
     </div>
   </div>
 
@@ -212,7 +193,7 @@
     </div>
   </div>
 
-  <script type="module" src="/app.js"></script>
+  <!-- App -->
+  <script type="module" src="./app.js"></script>
 </body>
-
 </html>
